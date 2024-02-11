@@ -1,0 +1,142 @@
+[
+    {
+        "name": "고즈(실내)",
+        "property": "신비",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "945,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "2,100,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "3,150,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "13,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "30,000,000", "attackType": "폭발"},
+            {"diff": "TORMENT", "hp": "50,000,000", "attackType": "폭발"}
+        ],
+        "description": "선생님, 고즈는 방어타입이 '신비'인 고난이도 보스에요! 전용무기를 어느정도 보유한 학생들로 파티를 편성할 것을 권장하고, 고즈에 필요한 학생이 없다면 파티를 쪼개서 공략하는 것을 추천드려요! 대신, 준비물을 모두 구비되어 있으면 클리어 자체는 쉬운 편이니 부담갖지 마세요!"
+    },
+    {
+        "name": "고즈(야전)",
+        "property": "신비",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "945,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "2,100,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "3,150,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "13,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "30,000,000", "attackType": "폭발"},
+            {"diff": "TORMENT", "hp": "50,000,000", "attackType": "폭발"}
+        ],
+        "description": "선생님, 고즈는 방어타입이 '신비'인 고난이도 보스에요! 전용무기를 어느정도 보유한 학생들로 파티를 편성할 것을 권장하고, 고즈에 필요한 학생이 없다면 파티를 쪼개서 공략하는 것을 추천드려요! 대신, 준비물을 모두 구비되어 있으면 클리어 자체는 쉬운 편이니 부담갖지 마세요!"
+    },
+    {
+        "name": "시로쿠로(실내)",
+        "property": "신비",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "280,000/320,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "550,000/600,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "675,000/735,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "1,200,000/1,330,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "4,500,000/6,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "10,000,000/10,000,000", "attackType": "관통"},
+            {"diff": "TORMENT", "hp": "35,000,000/45,000,000", "attackType": "관통"}
+        ],
+        "description": "선생님! 시로&쿠로는 방어력이 낮지만, 본체가 두 개로 나뉘어서 사실상 체력이 많은 보스에요! 이동기가 있는 학생을 반드시 채용하시고, 모든 패턴이 거의 랜덤성을 갖고있으니 반드시 모의전을 통해 보스에 대한 이해를 갖추고 실전에 들어가도록 해요!"
+    },
+    {
+        "name": "시로쿠로(시가전)",
+        "property": "신비",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "280,000/320,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "550,000/600,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "675,000/735,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "1,200,000/1,330,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "4,500,000/6,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "10,000,000/10,000,000", "attackType": "관통"},
+            {"diff": "TORMENT", "hp": "35,000,000/45,000,000", "attackType": "관통"}
+        ],
+        "description": "선생님! 시로&쿠로는 방어력이 낮지만, 본체가 두 개로 나뉘어서 사실상 체력이 많은 보스에요! 이동기가 있는 학생을 반드시 채용하시고, 모든 패턴이 거의 랜덤성을 갖고있으니 반드시 모의전을 통해 보스에 대한 이해를 갖추고 실전에 들어가도록 해요!"
+    },
+    {
+        "name": "비나(시가전)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "800,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "1,100,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "2,000,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "6,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "7,000,000", "attackType": "관통"},
+            {"diff": "TORMENT", "hp": "23,000,000", "attackType": "관통"}
+        ],
+        "description": "선생님! 비나는 관통타입의 보스로 가장 쉬운 보스라고 가히 말씀드릴 수 있어요! 하지만 방어력이 매우 높은 편이기에 마키, 아카네, 미카 같은 학생을 반드시 채용하도록 해요!"
+    },
+    {
+        "name": "비나(야전)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "800,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "1,100,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "2,000,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "6,000,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "7,000,000", "attackType": "관통"},
+            {"diff": "TORMENT", "hp": "23,000,000", "attackType": "관통"}
+        ],
+        "description": "선생님! 비나는 관통타입의 보스로 가장 쉬운 보스라고 가히 말씀드릴 수 있어요! 하지만 방어력이 매우 높은 편이기에 마키, 아카네, 미카 같은 학생을 반드시 채용하도록 해요!"
+    },
+    {
+        "name": "헤세드(야전)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "80,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "311,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "504,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "780,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "3,400,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "6,400,000", "attackType": "폭발"},
+            {"diff": "TORMENT", "hp": "21,000,000", "attackType": "폭발"}
+        ],
+        "description": "선생님! 헤세드는 본체 뿐만 아니라 잡몹처리를 같이해서 클리어를 해야 하는 총력전이에요! 그래서 체리노같은 광역 딜러와 미카같은 단일 딜러를 고루 편성하여 파티를 편성하는 것이 좋아요!"
+    },
+    {
+        "name": "헤세드(실내)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "80,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "311,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "504,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "780,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "3,400,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "6,400,000", "attackType": "폭발"},
+            {"diff": "TORMENT", "hp": "21,000,000", "attackType": "폭발"}
+        ],
+        "description": "선생님! 헤세드는 본체 뿐만 아니라 잡몹처리를 같이해서 클리어를 해야 하는 총력전이에요! 그래서 체리노같은 광역 딜러와 미카같은 단일 딜러를 고루 편성하여 파티를 편성하는 것이 좋아요!"
+    },
+    {
+        "name": "호드(시가전)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "80,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "125,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "480,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "1,600,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "2,800,000", "attackType": "신비"},
+            {"diff": "TORMENT", "hp": "18,000,000", "attackType": "신비"}
+        ],
+        "description": "선생님! 호드는 CC기 지속시간을 이용하여 파훼해야 하는 총력전이에요! 그래서 수영복 치세, 카요코와 같은 CC기 보유 캐릭터를 반드시 채용해야 하고, 치명 저항이 높은 대신 체력이 낮아서 상위권 커트라인이 상당히 높다는 점 유의해주세요!"
+    },
+    {
+        "name": "호드(실내)",
+        "property": "관통",
+        "difficulty": [
+            {"diff": "NORMAL", "hp": "80,000", "attackType": "일반"},
+            {"diff": "HARD", "hp": "125,000", "attackType": "일반"},
+            {"diff": "VERY HARD", "hp": "300,000", "attackType": "일반"},
+            {"diff": "HARDCORE", "hp": "480,000", "attackType": "일반"},
+            {"diff": "EXTREME", "hp": "1,600,000", "attackType": "일반"},
+            {"diff": "INSANE", "hp": "2,800,000", "attackType": "신비"},
+            {"diff": "TORMENT", "hp": "18,000,000", "attackType": "신비"}
+        ],
+        "description": "선생님! 호드는 CC기 지속시간을 이용하여 파훼해야 하는 총력전이에요! 그래서 수영복 치세, 카요코와 같은 CC기 보유 캐릭터를 반드시 채용해야 하고, 치명 저항이 높은 대신 체력이 낮아서 상위권 커트라인이 상당히 높다는 점 유의해주세요!"
+    }
+]
