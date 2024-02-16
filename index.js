@@ -78,7 +78,7 @@ client.on(Events.InteractionCreate, async interaction => {
 				difficultyInfo += "```";
 
 				await interaction.reply({
-					files: [{ attachment: `./TotalAssault/Images/${boss.name}.jpeg` }],
+					files: [{ attachment: `./TotalAssault/Images/Boss/${boss.name}.jpeg` }],
 					content: `총력전 보스: ${boss.name}\n` +
 					`방어타입: ${boss.property}\n\n` +
 					`${difficultyInfo}\n` +
