@@ -1,8 +1,8 @@
 {
   "dependencies": {
+    "discord": "^0.8.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.1",
-    "pdfkit": "^0.14.0",
-    "main": "index.js"
+    "pdfkit": "^0.14.0"
   }
 }
