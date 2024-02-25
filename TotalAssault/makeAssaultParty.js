@@ -68,7 +68,7 @@ const A4_Y = 595.28;
         }
     }
 
-    doc.fontSize(16)
+    doc.fontSize(20)
         .text(`${boss[0].coment_insane}`, Xpos, Ypos);
 
     // TORMENT party
@@ -109,7 +109,7 @@ const A4_Y = 595.28;
         }
     }
 
-    doc.fontSize(16)
+    doc.fontSize(20)
         .text(`${boss[0].coment_torment}`, Xpos, Ypos);
 
     doc.end();

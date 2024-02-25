@@ -1,7 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const { Client, Events, GatewayIntentBits, Collection, Attachmen, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } = require('discord.js');
-const { diffieHellman } = require('node:crypto');
 require('dotenv').config();
 
 const config = {

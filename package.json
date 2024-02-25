@@ -3,6 +3,7 @@
     "discord": "^0.8.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.1",
-    "pdfkit": "^0.14.0"
+    "pdfkit": "^0.14.0",
+    "puppeteer": "^22.2.0"
   }
 }
