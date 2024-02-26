@@ -1,7 +1,9 @@
 const puppeteer = require('puppeteer');
+const path = require('path');
+const fs = require('fs');
 require('dotenv').config();
 
-(async () => {
+async function scrapeTweet() {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
 
@@ -27,12 +29,47 @@ require('dotenv').config();
     });
     await page.waitForNetworkIdle({ idleTime: 2000 });
 
-    //await page.goto('https://twitter.com/KR_BlueArchive', { waitUntil: 'networkidle2' });
-    await new Promise((page) => setTimeout(page, 10000));
+    await page.goto('https://twitter.com/KR_BlueArchive', { waitUntil: 'networkidle2' });
 
-    const tweets = await page.$$eval('article div[lang]', (tweetContents) => tweetContents.map((tweet) => tweet.textContent));
+    const tweet = await page.$eval('article', (article) => {
+        const text = article.querySelector('div[lang]').textContent;
+        const imagesArray = Array.from(article.querySelectorAll('img'));
+        const images = imagesArray.map(img => img.src);
 
-    console.log(tweets);
+        return {text, images};
+    });
+
+    let data;
+
+    try {
+        data = fs.readFileSync('./currentData/currentTweet.txt', 'utf8');
+    } catch(error) {
+        console.log(error);
+    }
+
+    if(tweet.text != data) {
+
+        try {
+            fs.writeFileSync('./currentData/currentTweet.txt', tweet.text, 'utf8');
+        } catch(error) {
+            console.log(error);
+        }
+
+        for(let i=1; i<tweet.images.length; i++) {
+            const imageURL = tweet.images[i];
+            const imageName = `Image_${i}.jpg`;
+            const imagePath = path.join(__dirname, `./currentData/${imageName}`);
+            await require('./ImageDownloader.js').downloadImage(imageURL.replace('small', 'large'), imagePath);
+        }
+    
+        console.log(tweet);
+    } else {
+        console.log('The tweet already exists.');
+    }
     
     await browser.close();
-})();
+};
+
+scrapeTweet();
+
+//module.exports = { scrapeTweet };
