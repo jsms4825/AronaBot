@@ -4,6 +4,7 @@
     "discord": "^0.8.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.4.1",
+    "node-cron": "^3.0.3",
     "path": "^0.12.7",
     "pdfkit": "^0.14.0",
     "puppeteer": "^22.2.0"

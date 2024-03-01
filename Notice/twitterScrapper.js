@@ -42,7 +42,7 @@ async function scrapeTweet() {
     let data;
 
     try {
-        data = fs.readFileSync('./currentData/currentTweet.txt', 'utf8');
+        data = fs.readFileSync('./Notice/currentData/currentTweet.txt', 'utf8');
     } catch(error) {
         console.log(error);
     }
@@ -50,7 +50,7 @@ async function scrapeTweet() {
     if(tweet.text != data) {
 
         try {
-            fs.writeFileSync('./currentData/currentTweet.txt', tweet.text, 'utf8');
+            fs.writeFileSync('./Notice/currentData/currentTweet.txt', tweet.text, 'utf8');
         } catch(error) {
             console.log(error);
         }
@@ -58,11 +58,11 @@ async function scrapeTweet() {
         for(let i=1; i<tweet.images.length; i++) {
             const imageURL = tweet.images[i];
             const imageName = `Image_${i}.jpg`;
-            const imagePath = path.join(__dirname, `./currentData/${imageName}`);
-            await require('./ImageDownloader.js').downloadImage(imageURL.replace('small', 'large'), imagePath);
+            const imagePath = path.join(__dirname, `./Notice/currentData/${imageName}`);
+            await require('./Notice/ImageDownloader.js').downloadImage(imageURL.replace('small', 'large'), imagePath);
         }
     
-        console.log(tweet);
+        return tweet;
     } else {
         console.log('The tweet already exists.');
     }
@@ -70,6 +70,4 @@ async function scrapeTweet() {
     await browser.close();
 };
 
-scrapeTweet();
-
-//module.exports = { scrapeTweet };
+module.exports = { scrapeTweet };

@@ -1,5 +1,6 @@
 const fs = require('node:fs');
 const path = require('node:path');
+const cron = require('node-cron');
 const { Client, Events, GatewayIntentBits, Collection, Attachmen, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, ActionRowBuilder } = require('discord.js');
 require('dotenv').config();
 
@@ -142,6 +143,18 @@ client.on(Events.InteractionCreate, async interaction => {
 // It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+
+client.on('ready', client => {
+	let tweet, recent_tweet;
+	const channel = client.channels.cache.get('1203936743527555072');
+	cron.schedule("0/30 * * * * *", async () => {
+		recent_tweet = await require('./Notice/twitterScrapper.js').scrapeTweet().then;
+		if(tweet != recent_tweet) {
+			channel.send(`${recent_tweet.text}`);
+			tweet = recent_tweet;
+		}
+	});
 });
 
 // Log in to Discord with your client's token
