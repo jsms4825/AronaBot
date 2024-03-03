@@ -3,6 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 async function downloadImage(URL, imagePath) {
+    console.log('downloadImage 이상 무');
     try {
         const response = await fetch(URL);
         const arraybuffer = await response.arrayBuffer();

@@ -3,6 +3,9 @@ const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
 
+const appPath = process.cwd();
+const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
+
 async function scrapeTweet() {
     const browser = await puppeteer.launch({ headless: false });
     const page = await browser.newPage();
@@ -34,15 +37,16 @@ async function scrapeTweet() {
     const tweet = await page.$eval('article', (article) => {
         const text = article.querySelector('div[lang]').textContent;
         const imagesArray = Array.from(article.querySelectorAll('img'));
-        const images = imagesArray.map(img => img.src);
+        const convertImages = imagesArray.map(img => img.src);
+        const images = convertImages.filter(img => !img.includes('svg'));
 
         return {text, images};
     });
 
-    let data;
+    let data = '';
 
     try {
-        data = fs.readFileSync('./Notice/currentData/currentTweet.txt', 'utf8');
+        data = fs.readFileSync(`${appPath}/Notice/currentData/currentTweet.txt`, 'utf8');
     } catch(error) {
         console.log(error);
     }
@@ -50,24 +54,28 @@ async function scrapeTweet() {
     if(tweet.text != data) {
 
         try {
-            fs.writeFileSync('./Notice/currentData/currentTweet.txt', tweet.text, 'utf8');
+            fs.writeFileSync(`${appPath}/Notice/currentData/currentTweet.txt`, tweet.text, 'utf8');
         } catch(error) {
             console.log(error);
         }
+        
+        console.log(tweet.images.length);
 
         for(let i=1; i<tweet.images.length; i++) {
             const imageURL = tweet.images[i];
             const imageName = `Image_${i}.jpg`;
-            const imagePath = path.join(__dirname, `./Notice/currentData/${imageName}`);
-            await require('./Notice/ImageDownloader.js').downloadImage(imageURL.replace('small', 'large'), imagePath);
+            const imagePath = path.join(__dirname, `/currentData/${imageName}`);
+
+            await require(`${appPath}/Notice/ImageDownloader.js`).downloadImage(imageURL.replace('small', 'large'), imagePath);
         }
-    
+
+        await browser.close();
         return tweet;
     } else {
         console.log('The tweet already exists.');
+        await browser.close();
+        return;
     }
-    
-    await browser.close();
 };
 
 module.exports = { scrapeTweet };
