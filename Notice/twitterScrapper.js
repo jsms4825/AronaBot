@@ -7,7 +7,7 @@ const appPath = process.cwd();
 const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 
 async function scrapeTweet() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
     const username = process.env.X_ID;
@@ -58,8 +58,6 @@ async function scrapeTweet() {
         } catch(error) {
             console.log(error);
         }
-        
-        console.log(tweet.images.length);
 
         for(let i=1; i<tweet.images.length; i++) {
             const imageURL = tweet.images[i];

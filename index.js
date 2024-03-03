@@ -116,10 +116,10 @@ client.once(Events.ClientReady, readyClient => {
 client.on('ready', client => {
 	let tweet = {}, recent_tweet = {};
 	let attachments = [];
-	const channel = client.channels.cache.get('1203936743527555072');
+	const channel = client.channels.cache.get('1205554534462660678');
 	const appPath = process.cwd();
 
-	cron.schedule("0/30 * * * * *", async () => {
+	cron.schedule("*/3 * * * *", async () => {
 		recent_tweet = await require('./Notice/twitterScrapper.js').scrapeTweet();
 		if(JSON.stringify(tweet) !== JSON.stringify(recent_tweet)) {
 			for(let i = 1; i < recent_tweet.images.length; i++) {
