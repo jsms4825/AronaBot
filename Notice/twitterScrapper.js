@@ -1,13 +1,15 @@
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-core');
 const path = require('path');
 const fs = require('fs');
 require('dotenv').config();
 
 const appPath = process.cwd();
-const emojiRegex = /[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/u;
 
 async function scrapeTweet() {
-    const browser = await puppeteer.launch();
+    const browser = await puppeteer.launch({
+	    args: ['--no-sandbox', "--disabled-setupid-sandbox"],
+	    executablePath: '/usr/bin/chromium-browser'
+    });
     const page = await browser.newPage();
 
     const username = process.env.X_ID;
@@ -17,12 +19,15 @@ async function scrapeTweet() {
     await page.goto('https://twitter.com/i/flow/login', { waitUntil: 'networkidle0' });
     await page.setViewport({ width: 1280, height: 800 });
 
+
     // input ID
     await page.waitForSelector('[autocomplete="username"]');
     await page.type('input[autocomplete="username"]', username, { delay: 50 });
     await page.evaluate(() => {
         document.querySelectorAll('div[role="button"]')[2].click()
     });
+
+    await page.waitForNetworkIdle({ idleTime: 5000 });
 
     // input pwd
     await page.waitForSelector('[autocomplete="current-password"]');
@@ -32,7 +37,7 @@ async function scrapeTweet() {
     });
     await page.waitForNetworkIdle({ idleTime: 2000 });
 
-    await page.goto('https://twitter.com/KR_BlueArchive', { waitUntil: 'networkidle2' });
+    await page.goto('https://twitter.com/KR_BlueArchive', { waitUntil: 'networkidle0' });
 
     const tweet = await page.$eval('article', (article) => {
         const text = article.querySelector('div[lang]').textContent;

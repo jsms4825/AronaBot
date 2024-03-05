@@ -5,7 +5,7 @@ const { Client, Events, GatewayIntentBits, Collection, Attachmen, StringSelectMe
 require('dotenv').config();
 
 const config = {
-	token: process.env.token
+	token: process.env.TOKEN
 }
 
 // Create a new client instance
@@ -119,7 +119,7 @@ client.on('ready', client => {
 	const channel = client.channels.cache.get('1205554534462660678');
 	const appPath = process.cwd();
 
-	cron.schedule("*/3 * * * *", async () => {
+	cron.schedule("*/2 * * * *", async () => {
 		recent_tweet = await require('./Notice/twitterScrapper.js').scrapeTweet();
 		if(JSON.stringify(tweet) !== JSON.stringify(recent_tweet)) {
 			for(let i = 1; i < recent_tweet.images.length; i++) {
