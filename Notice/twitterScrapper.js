@@ -1,24 +1,35 @@
 const puppeteer = require('puppeteer-core');
 const path = require('path');
 const fs = require('fs');
-require('dotenv').config();
+const os = require('os');
 
+require('dotenv').config();
+const osPlatform = os.platform();
 const appPath = process.cwd();
 
 async function scrapeTweet() {
+
+    let executablePath;
+    if(/^win/i.test(osPlatform)) {
+        executablePath = 'C:\\Users\\jsms4\\AppData\\Local\\Chromium\\Application\\chrome.exe';
+    } else if(/^linux/i.test(osPlatform)) {
+        executablePath = '/usr/bin/chromium-browser';
+    }
+
     const browser = await puppeteer.launch({
-	    args: ['--no-sandbox', "--disabled-setupid-sandbox"],
-	    executablePath: '/usr/bin/chromium-browser'
+        headless: false,
+	    //args: ['--no-sandbox', "--disabled-setupid-sandbox"],
+	    executablePath: executablePath
     });
     const page = await browser.newPage();
 
     const username = process.env.X_ID;
     const pwd = process.env.X_PWD;
+    const phonenumber = process.env.X_PHONE;
 
     // Login
     await page.goto('https://twitter.com/i/flow/login', { waitUntil: 'networkidle0' });
     await page.setViewport({ width: 1280, height: 800 });
-
 
     // input ID
     await page.waitForSelector('[autocomplete="username"]');
@@ -27,7 +38,7 @@ async function scrapeTweet() {
         document.querySelectorAll('div[role="button"]')[2].click()
     });
 
-    await page.waitForNetworkIdle({ idleTime: 5000 });
+    await page.waitForNetworkIdle({ idleTime: 1000 });
 
     // input pwd
     await page.waitForSelector('[autocomplete="current-password"]');
@@ -35,7 +46,20 @@ async function scrapeTweet() {
     await page.evaluate(() => {
         document.querySelectorAll('div[role="button"]')[2].click()
     });
-    await page.waitForNetworkIdle({ idleTime: 2000 });
+
+    await page.waitForNetworkIdle({ idleTime: 1000 });
+
+    // If twitter requires phone number, input phone number
+
+    const extractedText = await page.$eval("*", (el) => el.innerText);
+    if(extractedText.includes('휴대전화 번호를 입력')) {
+        await page.waitForSelector('[autocomplete="on"]');
+        await page.type('input[autocomplete="on"]', phonenumber, { delay: 50 });
+        await page.evaluate(() => 
+            document.querySelectorAll('div[role="button"]')[1].click()
+        );
+        await page.waitForNetworkIdle({ idleTime: 2000 });
+    }
 
     await page.goto('https://twitter.com/KR_BlueArchive', { waitUntil: 'networkidle0' });
 
@@ -49,6 +73,8 @@ async function scrapeTweet() {
     });
 
     let data = '';
+    console.log(tweet);
+    console.log(appPath);
 
     try {
         data = fs.readFileSync(`${appPath}/Notice/currentData/currentTweet.txt`, 'utf8');
