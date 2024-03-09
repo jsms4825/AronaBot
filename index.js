@@ -146,13 +146,24 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 client.on('ready', client => {
-	let tweet, recent_tweet;
+	let notice, recent_notice;
 	const channel = client.channels.cache.get('1203936743527555072');
 	cron.schedule("0/30 * * * * *", async () => {
-		recent_tweet = await require('./Notice/twitterScrapper.js').scrapeTweet().then;
-		if(tweet != recent_tweet) {
-			channel.send(`${recent_tweet.text}`);
-			tweet = recent_tweet;
+		recent_notice = await require('./Notice/homepageScraper.js').scrapeNotice();
+		if(notice != recent_notice) {
+
+			let text = '';
+			for(var key of recent_notice.texts) {
+				if(key.trim().length === 0) text += '\n';
+				else text += key + '\n';
+			}
+
+			channel.send(text);
+
+			for(let i=1; i<recent_notice.images.length; i++) {
+				channel.send({ files: [`./Notice/currentData/Image_${i}.jpg`] });
+			}
+			notice = recent_notice;
 		}
 	});
 });
