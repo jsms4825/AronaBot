@@ -5,7 +5,7 @@ const { Client, Events, GatewayIntentBits, Collection, Attachmen, StringSelectMe
 require('dotenv').config();
 
 const config = {
-	token: process.env.token
+	token: process.env.TOKEN
 }
 
 // Create a new client instance
@@ -99,35 +99,6 @@ client.on(Events.InteractionCreate, async interaction => {
 				.setDescription(`${boss.name}에 대한 내용을 확인합니다.`)
 			);
 		}
-			/*
-			.addOptions(
-				new StringSelectMenuOptionBuilder()
-					.setLabel('고즈(실내)')
-					.setDescription('고즈(실내전)에 대한 내용을 확인합니다.')
-					.setValue('고즈(실내)'),
-				new StringSelectMenuOptionBuilder()
-					.setLabel('고즈(야전)')
-					.setDescription('고즈(야전)에 대한 내용을 확인합니다.')
-					.setValue('고즈(야전)'),
-				new StringSelectMenuOptionBuilder()
-					.setLabel('시로&쿠로(실내)')
-					.setDescription('시로쿠로(실내전)에 대한 내용을 확인합니다.')
-					.setValue('시로쿠로(실내)'),
-				new StringSelectMenuOptionBuilder()
-					.setLabel('시로&쿠로(시가전)')
-					.setDescription('시로쿠로(시가전)에 대한 내용을 확인합니다.')
-					.setValue('시로쿠로(시가전)'),
-				new StringSelectMenuOptionBuilder()
-					.setLabel('비나(시가전)')
-					.setDescription('고즈(시가전)에 대한 내용을 확인합니다.')
-					.setValue('비나(시가전)'),
-				new StringSelectMenuOptionBuilder()
-					.setLabel('비나(야전)')
-					.setDescription('비나(야전)에 대한 내용을 확인합니다.')
-					.setValue('비나(야전)')
-			);
-			*/
-        
         const row = new ActionRowBuilder()
 			.addComponents(selectBoss);
 
@@ -138,9 +109,6 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 });
 
-// When the client is ready, run this code (only once).
-// The distinction between `client: Client<boolean>` and `readyClient: Client<true>` is important for TypeScript developers.
-// It makes some properties non-nullable.
 client.once(Events.ClientReady, readyClient => {
 	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
 });
