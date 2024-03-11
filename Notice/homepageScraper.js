@@ -14,28 +14,20 @@ async function scrapeNotice() {
     await page.goto('https://forum.nexon.com/bluearchive/board_list?board=1018', { waitUntil: 'networkidle0' });
     await page.setViewport({ width: 1280, height: 800 });
 
-    await page.waitForSelector('#contents > div.section-bot > div.list-box > ul > li:nth-child(3) > a > h3');
-    await page.click('#contents > div.section-bot > div.list-box > ul > li:nth-child(3) > a > h3');
+    await page.waitForSelector('#contents > div.section-bot > div.list-box > ul > li:nth-child(1) > a > h3');
+    await page.click('#contents > div.section-bot > div.list-box > ul > li:nth-child(1) > a > h3');
 
     await page.waitForSelector('div[class="contents-box"]');
 
     const notice = await page.$eval('div[class="contents-box"]', (content) => {
-        const textArray = Array.from(content.querySelectorAll('*'));
+        const textArray = Array.from(content.querySelectorAll('p'));
         const texts = textArray.map(txt => txt.textContent);
         
         const imagesArray = Array.from(content.querySelectorAll('img'));
         const images = imagesArray.map(img => img.src);
 
-        const tables = Array.from(content.querySelectorAll('table'), table => {
-            return Array.from(table.querySelectorAll('tr'), row => {
-                return Array.from(row.querySelectorAll('th, td'), cell => cell.innerText);
-            });
-        });
-
-        return {texts, images, tables};
+        return {texts, images};
     });
-;
-    console.log(notice.tables);
 
     let currentURL;
 
