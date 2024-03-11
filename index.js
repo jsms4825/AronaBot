@@ -119,18 +119,20 @@ client.on('ready', client => {
 	cron.schedule("0/30 * * * * *", async () => {
 		recent_notice = await require('./Notice/homepageScraper.js').scrapeNotice();
 		if(notice != recent_notice) {
-
 			let text = '';
 			for(var key of recent_notice.texts) {
 				if(key.trim().length === 0) text += '\n';
 				else text += key + '\n';
 			}
 
-			channel.send(text);
-
-			for(let i=1; i<recent_notice.images.length; i++) {
-				channel.send({ files: [`./Notice/currentData/Image_${i}.jpg`] });
+			await channel.send({ files: [`${recent_notice.images[0]}`] });
+			await channel.send(text);
+			
+			recent_notice.images.shift();
+			for(const image of recent_notice.images) {
+				channel.send({ files: [`${image}`] });
 			}
+
 			notice = recent_notice;
 		}
 	});
