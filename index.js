@@ -114,26 +114,24 @@ client.once(Events.ClientReady, readyClient => {
 });
 
 client.on('ready', client => {
-	let notice, recent_notice;
-	const channel = client.channels.cache.get('1203936743527555072');
-	cron.schedule("0/30 * * * * *", async () => {
-		recent_notice = await require('./Notice/homepageScraper.js').scrapeNotice();
-		if(notice != recent_notice) {
-			let text = '';
-			for(var key of recent_notice.texts) {
-				if(key.trim().length === 0) text += '\n';
-				else text += key + '\n';
-			}
+	let tweet, recent_tweet;
+	const channel_list = require('./Notice/currentData/channelList.json').channel;
 
-			await channel.send({ files: [`${recent_notice.images[0]}`] });
-			await channel.send(text);
-			
-			recent_notice.images.shift();
-			for(const image of recent_notice.images) {
-				channel.send({ files: [`${image}`] });
-			}
+	cron.schedule("*/5 * * * *", async () => {
+		recent_tweet = await require('./Notice/twitterScraper.js').scrapeTwitter();
+		if(tweet != recent_tweet) {
+			for(const channelID of channel_list) {
+				const channel = client.channels.cache.get(channelID);
 
-			notice = recent_notice;
+				let text = recent_tweet.text;
+				await channel.send(text);
+				
+				for(const image of recent_tweet.images) {
+					await channel.send(`${image}`.replace('small', 'large'));
+				}
+	
+				tweet = recent_tweet;
+			}
 		}
 	});
 });
