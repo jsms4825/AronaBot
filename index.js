@@ -129,6 +129,10 @@ client.on('ready', client => {
 				for(const image of recent_tweet.images) {
 					await channel.send(`${image}`.replace('small', 'large'));
 				}
+
+				for(var i=1; i<recent_tweet.videos.length; i++) {
+					await channel.send({ files: [{ attachment: `./Notice/currentData/video_${i}.mp4` }]});
+				}
 	
 				tweet = recent_tweet;
 			}

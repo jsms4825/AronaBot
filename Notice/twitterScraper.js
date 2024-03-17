@@ -42,11 +42,14 @@ async function scrapeTwitter() {
         
         imagesArray.forEach(img => {
             const src = img.src;
-            if(!src.includes('svg') && !src.includes('profile_images'))
+            if(!src.includes('svg') && !src.includes('profile_images') && !src.includes('video'))
                 images.push(src);
         })
 
-        return {text, images};
+        const videosArray = Array.from(content.querySelectorAll('video'));
+        const videos = videosArray.map(video => video.src);
+
+        return {text, images, videos};
     });
 
     let currentTweet;
@@ -61,6 +64,16 @@ async function scrapeTwitter() {
 
         try {
             fs.writeFileSync(`${appPath}/Notice/currentData/currentNotice.txt`, tweet.text, 'utf8');
+        } catch(error) {
+            console.log(error);
+        }
+
+        try{
+            let idx = 1;
+            for(const video_src of tweet.videos) {
+                let video_path = `${appPath}/Notice/currentData/video_${idx}.mp4`;
+                require(`${appPath}/Notice/downloadVideos.js`).downloadVideo(videos_src, path);
+            }
         } catch(error) {
             console.log(error);
         }
